@@ -3,12 +3,17 @@ import React from "react";
 import { useState } from "react";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+
+  const [username , setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
+  const router = useRouter();
+  
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
@@ -16,8 +21,9 @@ export default function SignUp() {
     }
 
     try {
-      await axios.post("http://localhost:8080/api/register", { email, password });
+      await axios.post("http://localhost:8080/api/register", { username , email, password });
       alert("Registration Successful! Please log in.");
+      router.push("/signin");
     } catch (error) {
       console.error("Signup error:", error);
       alert("Registration failed. Try again.");
@@ -27,6 +33,14 @@ export default function SignUp() {
   return (
     <Container maxWidth="sm">
       <Typography variant="h4">Sign Up</Typography>
+      <TextField
+        label="Username"
+        fullWidth
+        margin="normal"
+        value={username}
+        type="text"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+      />
       <TextField
         label="Email"
         fullWidth
