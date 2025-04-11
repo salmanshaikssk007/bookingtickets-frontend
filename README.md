@@ -27,6 +27,7 @@ A modern frontend for an Event Ticket Booking Platform, built using **Next.js 14
 ---
 
 ## 📁 Project Structure
+```bash
 bookingtickets-frontend/
 ├── public/               # Static assets
 ├── src/
@@ -41,7 +42,7 @@ bookingtickets-frontend/
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── README.md
-
+```
 ---
 
 ## 🧪 Getting Started
